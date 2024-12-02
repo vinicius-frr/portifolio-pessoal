@@ -1,12 +1,13 @@
 from peewee import MySQLDatabase, Model, CharField,  TextField, ForeignKeyField
+import os
 
 # Configuração da conexão com o banco de dados
 db = MySQLDatabase(
-    'defaultdb',  # Nome do banco de dados
-    user='avnadmin',  # Usuário
-    password='AVNS_LRL-sCkJNHfx9FAaUXq',  # Senha
-    host='portifolio-viniciusfrr7.j.aivencloud.com',  # Endereço do servidor
-    port=10276  # Porta
+    os.getenv("DB_NAME"),  # Nome do banco de dados
+    user=os.getenv("DB_USER"),  # Usuário
+    password=os.getenv("DB_PASSWORD"),  # Senha
+    host=os.getenv("DB_HOST"),  # Endereço do servidor
+    port=int(os.getenv("DB_PORT"))  # Porta
 )
 from usuario import Usuario
 
@@ -52,6 +53,9 @@ class Contato(Model):
 
 
 def create_tables():
-    with db.connection_context():
-        db.create_tables([Info, Projeto, Curriculo, Contato, Usuario])
+    try:
+        with db.connection_context():
+            db.create_tables([Info, Projeto, Curriculo, Contato, Usuario])
+    except Exception as e:
+        print("Erro ao criar as tabelas:", e)
         

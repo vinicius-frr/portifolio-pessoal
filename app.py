@@ -2,7 +2,11 @@ from flask import Flask
 from flask_login import LoginManager
 from database import create_tables
 from usuario import Usuario
+from dotenv import load_dotenv
 import os
+
+# Carregar variáveis do .env
+load_dotenv()
 
 # Inicializando o aplicativo Flask
 app = Flask(__name__)
