@@ -1,0 +1,16 @@
+# Ignorar diretórios de cache e arquivos compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar o diretório do ambiente virtual
+venv/
+
+# Ignorar a pasta de configurações do VSCode
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Arquivos de ambiente sensível
+*.env
